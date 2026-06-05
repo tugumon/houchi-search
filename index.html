@@ -21,6 +21,12 @@ a {
   padding: 10px;
   margin: 10px 0;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
 }
 </style>
 
@@ -29,16 +35,55 @@ a {
 
 <h1>放置少女キャラ検索</h1>
 
-<div class="card">
-  <a href="character.html?name=呂布">呂布</a>
-</div>
+<!-- タグボタン -->
+<button onclick="filterTag('all')">全て</button>
+<button onclick="filterTag('武将')">武将</button>
+<button onclick="filterTag('謀士')">謀士</button>
+<button onclick="filterTag('単体火力')">単体火力</button>
+<button onclick="filterTag('PvP')">PvP</button>
 
-<div class="card">
-  <a href="character.html?name=諸葛亮">諸葛亮</a>
-</div>
+<div id="list"></div>
+
+<script>
+
+const characters = [
+  { name: "呂布", tags: ["武将", "単体火力", "PvP"] },
+  { name: "諸葛亮", tags: ["謀士", "範囲攻撃"] },
+  { name: "李牧", tags: ["武将", "ボス向け"] }
+];
+
+const list = document.getElementById("list");
+
+function render(data) {
+  list.innerHTML = data.map(c => `
+    <div class="card">
+      <a href="character.html?name=${encodeURIComponent(c.name)}">
+        ${c.name}
+      </a>
+    </div>
+  `).join("");
+}
+
+function filterTag(tag) {
+
+  if (tag === "all") {
+    render(characters);
+    return;
+  }
+
+  const filtered = characters.filter(c =>
+    c.tags.includes(tag)
+  );
+
+  render(filtered);
+}
+
+// 初期表示
+render(characters);
+
+</script>
 
 </body>
 </html>
-
 </body>
 </html>
