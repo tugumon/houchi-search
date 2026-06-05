@@ -60,6 +60,14 @@ function render(data) {
       <a href="character.html?name=${encodeURIComponent(c.name)}">
         ${c.name}
       </a>
+      <div>
+        ${c.tags.map(tag => `
+          <span style="margin-right:5px; color:#aaa; cursor:pointer;"
+            onclick="filterTag('${tag}')">
+            #${tag}
+          </span>
+        `).join("")}
+      </div>
     </div>
   `).join("");
 }
