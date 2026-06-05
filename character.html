@@ -10,6 +10,9 @@
 
 <img id="image" width="300">
 
+<p id="rarity"></p>
+<p id="job"></p>
+
 <h2>タグ</h2>
 
 <ul id="tags"></ul>
@@ -23,23 +26,34 @@
 const characters = {
   "呂布": {
     image: "https://via.placeholder.com/300",
-    tags: ["武将","単体火力","PvP"]
+    rarity: "MR",
+    job: "武将",
+    tags: ["単体火力", "PvP", "会心"]
   },
 
   "諸葛亮": {
     image: "https://via.placeholder.com/300",
-    tags: ["謀士","範囲攻撃"]
+    rarity: "MR",
+    job: "謀士",
+    tags: ["範囲攻撃", "知力"]
   }
 };
 
 const params = new URLSearchParams(location.search);
 const name = params.get("name");
 
+const character = characters[name];
+
 document.getElementById("name").textContent = name;
-document.getElementById("image").src = characters[name].image;
+document.getElementById("image").src = character.image;
+document.getElementById("rarity").textContent =
+  "レア度： " + character.rarity;
+
+document.getElementById("job").textContent =
+  "職業： " + character.job;
 
 document.getElementById("tags").innerHTML =
-  characters[name].tags
+  character.tags
     .map(tag => `<li>${tag}</li>`)
     .join("");
 
