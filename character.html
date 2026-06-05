@@ -55,19 +55,20 @@ document.getElementById("job").textContent =
 document.getElementById("tags").innerHTML =
   character.tags
     .map(tag => `
-      <span style="
-        display:inline-block;
-        background:#444;
-        padding:5px 10px;
-        margin:5px;
-        border-radius:6px;
-        color:white;
-        cursor:pointer;
-      ">
-        <a href="index.html" style="color:white; text-decoration:none;">
+      <li>
+        <span onclick="location.href='index.html'"
+          style="
+            display:inline-block;
+            background:#444;
+            padding:6px 10px;
+            margin:4px;
+            border-radius:6px;
+            color:white;
+            cursor:pointer;
+          ">
           ${tag}
-        </a>
-      </span>
+        </span>
+      </li>
     `)
     .join("");
 
