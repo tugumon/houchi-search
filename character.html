@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>キャラ詳細</title>
+</head>
+<body>
+
+<h1 id="name"></h1>
+
+<img id="image" width="300">
+
+<h2>タグ</h2>
+
+<ul id="tags"></ul>
+
+<p>
+  <a href="index.html">一覧に戻る</a>
+</p>
+
+<script>
+
+const characters = {
+  "呂布": {
+    image: "https://via.placeholder.com/300",
+    tags: ["武将","単体火力","PvP"]
+  },
+
+  "諸葛亮": {
+    image: "https://via.placeholder.com/300",
+    tags: ["謀士","範囲攻撃"]
+  }
+};
+
+const params = new URLSearchParams(location.search);
+const name = params.get("name");
+
+document.getElementById("name").textContent = name;
+document.getElementById("image").src = characters[name].image;
+
+document.getElementById("tags").innerHTML =
+  characters[name].tags
+    .map(tag => `<li>${tag}</li>`)
+    .join("");
+
+</script>
+
+</body>
+</html>
