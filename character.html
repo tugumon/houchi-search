@@ -54,7 +54,13 @@ document.getElementById("job").textContent =
 
 document.getElementById("tags").innerHTML =
   character.tags
-    .map(tag => `<li>${tag}</li>`)
+    .map(tag => `
+      <li>
+        <a href="index.html" style="color:#66ccff;">
+          ${tag}
+        </a>
+      </li>
+    `)
     .join("");
 
 </script>
